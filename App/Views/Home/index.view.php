@@ -4,7 +4,7 @@
         <div class="d-flex justify-content-start flex-wrap">
             <?php foreach ($data['posts'] as $post) { ?>
 
-                <div class="card mb-3">
+                <div class="card mb-3" style="height: 10em">
                     <img src="<?= \App\Config\Configuration::LOAD_DIR . $post->getImage() ?>" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h2 class="card-title"><?= $post->getTitle() ?></h2>
