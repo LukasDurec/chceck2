@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\Post;
+use App\Config\Configuration;
 
 
 /**
@@ -32,13 +33,23 @@ class HomeController extends AControllerRedirect
         $this->redirect("home");
     }
 
-    public function upload(){
-
-
+    public function upload()
+    {
+        if (isset($_FILES['file'])) {
+            if ($_FILES["file"]["error"] == UPLOAD_ERR_OK) {
+                $name = date('Y-m-d-H-i-s_') . $_FILES['file']['name'];
+                move_uploaded_file($_FILES['file']['tmp_name'], Configuration::UPLOAD_DIR . "$name");
+                $newPost = new Post();
+                $newPost->setImage($name);
+                $newPost->save();
+            }
+        }
+        $this->redirect("home");
 
     }
 
-    public function post(){
+    public function post()
+    {
 
         return $this->html(
             []

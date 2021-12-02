@@ -20,5 +20,6 @@ class Configuration
 
     public const DEBUG_QUERY = false;
 
-    public const UPLOAD_DIR ='check2/public/files/';
+    public const UPLOAD_DIR ='public/files/';
+    public const LOAD_DIR ='check2/public/files/';
 }

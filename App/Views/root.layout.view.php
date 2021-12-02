@@ -34,7 +34,7 @@
 <div class="container">
     <div class="row mt-2">
         <div class="col">
-                <?= $contentHTML ?>
+                <?=  $contentHTML ?>
         </div>
     </div>
 </div>
