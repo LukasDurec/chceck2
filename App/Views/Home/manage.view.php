@@ -7,6 +7,10 @@
         <th scope="col">Title</th>
         <th scope="col">Subtitle</th>
         <th scope="col">Actions</th>
+        <th>
+        <a href="?c=home&a=post" class="btn btn-warning"> Create new
+        </a>
+        </th>
     </tr>
     </thead>
     <tbody>
@@ -15,7 +19,7 @@
         <th scope="row"><?= $post->getId() ?></th>
         <td><?= $post->getTitle() ?></td>
         <td><?= $post->getSubtitle() ?></td>
-        <td>
+        <td colspan="2">
             <button type="button"  data-bs-toggle="modal" data-bs-target="#view" class="btn btn-success">
                 <i class="bi bi-receipt"></i>
             </button>
