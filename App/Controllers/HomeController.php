@@ -55,6 +55,40 @@ class HomeController extends AControllerRedirect
 
     }
 
+    public function update()
+    {
+        $postid = $_POST['postid'];
+
+        $post = Post::getOne($postid);
+        $postTitle = $post->getTitle();
+        $postSubtitle = $post->getSubtitle();
+        $postContent = $post->getContent();
+
+        $newTitle= $_POST["title"];
+        $newSubtitle= $_POST["subtitle"];
+        $newContent= $_POST["content"];
+
+        if ($newTitle != $postTitle){
+            $post->setTitle($newTitle);
+        }
+        if ($newSubtitle != $postSubtitle){
+            $post->setSubtitle($newSubtitle);
+        }
+        if ($newContent != $postContent){
+            $post->setContent($newContent);
+        }
+        if (isset($_FILES['file'])) {
+            if ($_FILES["file"]["error"] == UPLOAD_ERR_OK) {
+                $name = date('Y-m-d-H-i-s_') . $_FILES['file']['name'];
+                move_uploaded_file($_FILES['file']['tmp_name'], Configuration::UPLOAD_DIR . "$name");
+                $post->setImage($name);
+            }
+        }
+        $post->save();
+        $this->redirect("home","manage");
+
+    }
+
     public function delete()
     {
         $postid = $this->request()->getValue("postid");
@@ -64,7 +98,6 @@ class HomeController extends AControllerRedirect
             unlink(Configuration::UPLOAD_DIR."$name");
             $post->delete();
         }
-        $this->redirect("home");
 
     }
 
