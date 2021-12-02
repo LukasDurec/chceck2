@@ -22,7 +22,7 @@
             <a href="#" class="btn btn-info">
                 <i class="bi bi-arrow-up-circle-fill"></i>
             </a>
-            <a href="#" class="btn btn-danger">
+            <a href="?c=home&a=delete&postid=<?= $post->getId() ?>" class="btn btn-danger">
                 <i class="bi bi-x-square-fill"></i>
             </a>
 

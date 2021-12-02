@@ -24,7 +24,8 @@ class HomeController extends AControllerRedirect
             ]);
     }
 
-    public function addLike(){
+    public function addLike()
+    {
         $postid = $this->request()->getValue("postid");
         if( $postid > 0){
             $post = Post::getOne($postid);
@@ -49,6 +50,19 @@ class HomeController extends AControllerRedirect
                 $newPost->setContent($content);
                 $newPost->save();
             }
+        }
+        $this->redirect("home");
+
+    }
+
+    public function delete()
+    {
+        $postid = $this->request()->getValue("postid");
+        if( $postid > 0){
+            $post = Post::getOne($postid);
+            $name = $post->getImage();
+            unlink(Configuration::UPLOAD_DIR."$name");
+            $post->delete();
         }
         $this->redirect("home");
 
