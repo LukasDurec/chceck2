@@ -27,6 +27,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="?c=home&a=post">Pridaj</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="?c=home&a=manage">Manage</a>
+                </li>
             </ul>
         </div>
     </div>

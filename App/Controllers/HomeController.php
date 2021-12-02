@@ -39,8 +39,14 @@ class HomeController extends AControllerRedirect
             if ($_FILES["file"]["error"] == UPLOAD_ERR_OK) {
                 $name = date('Y-m-d-H-i-s_') . $_FILES['file']['name'];
                 move_uploaded_file($_FILES['file']['tmp_name'], Configuration::UPLOAD_DIR . "$name");
+                $title = $_POST['title'];
+                $subtitle = $_POST['subtitle'];
+                $content = $_POST['content'];
                 $newPost = new Post();
+                $newPost->setTitle($title);
+                $newPost->setSubtitle($subtitle);
                 $newPost->setImage($name);
+                $newPost->setContent($content);
                 $newPost->save();
             }
         }
@@ -55,6 +61,15 @@ class HomeController extends AControllerRedirect
             []
         );
 
+    }
+    public function manage()
+    {
+        $posts = Post::getAll();
+
+        return $this->html(
+            [
+                'posts' => $posts
+            ]);
     }
 
     public function contact()
